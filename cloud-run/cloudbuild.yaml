@@ -1,0 +1,37 @@
+images:
+- "eu.gcr.io/${PROJECT_ID}/cloud-run/${_MODEL_NAME}"
+steps:
+- name: "gcr.io/cloud-builders/gsutil"
+  args: ["cp", "${_GCS_MODEL_PATH}/*", "${_DOCKERFOLDER}/"]
+- name: "gcr.io/cloud-builders/docker"
+  args: ["build", "-t", "eu.gcr.io/${PROJECT_ID}/cloud-run/${_MODEL_NAME}:${_VERSION}", "${_DOCKERFOLDER}"]
+- name: "gcr.io/cloud-builders/docker"
+  args: ["push", "eu.gcr.io/${PROJECT_ID}/cloud-run/${_MODEL_NAME}:${_VERSION}"]
+- name: "gcr.io/cloud-builders/gcloud-slim"
+  args:
+  - "run"
+  - "deploy"
+  - "${_MODEL_NAME}"
+  - "--image"
+  - "eu.gcr.io/${PROJECT_ID}/cloud-run/${_MODEL_NAME}:${_VERSION}"
+  - "--port"
+  - "8501"
+  - "--no-allow-unauthenticated"
+  - "--timeout"
+  - "${_TIMEOUT}"
+  - "--memory"
+  - "${_MEMORY}"
+  - "--max-instances"
+  - "${_MAX_INSTANCES}"
+  - "--service-account"
+  - "xxx@project-id.iam.gserviceaccount.com" <- replace this with your Cloud Run runtime service account
+  - "--region"
+  - "${_GCP_REGION}"
+  - "--platform"
+  - "managed"
+substitutions:
+  _GCP_REGION: "europe-west1"
+  _MAX_INSTANCES: "10"
+  _MEMORY: "1Gi"
+  _TIMEOUT: "60"
+  _VERSION: "latest"

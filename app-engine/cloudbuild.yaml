@@ -1,0 +1,3 @@
+steps:
+- name: "gcr.io/cloud-builders/gcloud-slim"
+  args: ["app", "deploy", "app-engine/app.yaml", "--version", "${SHORT_SHA}", "--no-promote"]

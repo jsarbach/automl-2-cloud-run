@@ -1,0 +1,49 @@
+<!doctype html>
+<html>
+
+<head>
+  <title>{% block title %}{% endblock %}</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="theme-color" content="#0d47a1"/>
+
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Roboto+Mono&display=swap" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="{{ url_for('static', filename='style.css') }}" type="text/css" rel="stylesheet"/>
+
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+</head>
+
+<body>
+
+<header>
+  <nav class="blue darken-4" role="navigation">
+    <div class="nav-wrapper container">
+      <a href="/" class="brand-logo">Coffee Classifier</a>
+    </div>
+  </nav>
+</header>
+
+<main>
+{% block content %}{% endblock %}
+</main>
+
+<footer class="page-footer blue darken-2">
+  <div class="container">
+    <div class="row">
+      <div class="col s12"></div>
+    </div>
+  </div>
+  <div class="footer-copyright">
+    <div class="container">
+      <div class="row">
+        <div class="col s12"></div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+
+</html>

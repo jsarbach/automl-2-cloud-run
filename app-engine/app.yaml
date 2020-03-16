@@ -1,0 +1,10 @@
+runtime: python37
+service: default
+env_variables:
+  SECRET_NAME: "cloud-run-invoker-key"
+  SERVICE_URL: "https://xxx.a.run.app/v1/models/default:predict"
+handlers:
+- url: /static
+  static_dir: static
+- url: /.*
+  script: auto

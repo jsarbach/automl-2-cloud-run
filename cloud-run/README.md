@@ -6,7 +6,7 @@ subfolder and trigger builds with `gcloud builds submit --substitutions [SUBSTIT
 ### Substitutions
 #### Required
 * `_MODEL_NAME`: Arbitrary name for the ML model that will be used as Cloud Run service name.
-* `_DOCKERFOLDER`: Subfolder with the Dockerfile to use, e.g. `automl-vision-cpu-1.12.0`.
+* `_DOCKERFOLDER`: Subfolder with the Dockerfile to use, e.g. `automl-vision-cpu-1.14.0`.
 * `_GCS_MODEL_PATH`: GCS path to the ML model export (saved_model.pb), including the gs:// prefix, without trailing slash.
 #### Optional
 * `_GCP_REGION`: GCP region where the Cloud Run service is deployed, default is `europe-west1`
@@ -15,7 +15,7 @@ subfolder and trigger builds with `gcloud builds submit --substitutions [SUBSTIT
 * `_TIMEOUT`: timeout in sec., default is `60`
 * `_VERSION`: Docker image version tag, e.g. the model version, default is `latest`
 ### Example
-`gcloud builds submit --substitutions _MODEL_NAME=coffee-classifier,_DOCKERFOLDER=automl-vision-cpu-1.12.0,_GCS_MODEL_PATH=gs://my-automl-demos-vcm/model-export/icn/tf_saved_model-coffee_classifier_20200225020250-2020-02-25T20:44:26.192Z,_VERSION=20200225020250`
+`gcloud builds submit --substitutions _MODEL_NAME=coffee-classifier,_DOCKERFOLDER=automl-vision-cpu-1.12.0,_GCS_MODEL_PATH=gs://my-automl-demos-vcm/model-export/icn/tf_saved_model-coffee_classifier_20200225020250-2020-02-25T20:44:26.192Z,_VERSION=20200225020250-1.14.0`
 
 
 [Cloud Build]: https://cloud.google.com/cloud-build
